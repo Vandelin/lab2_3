@@ -26,6 +26,17 @@
 			<artifactId>lab2_3_dep</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+	   <dependency>
+		   <groupId>edu.iis.mto</groupId>
+		   <artifactId>lab2_3</artifactId>
+		   <version>0.0.1-SNAPSHOT</version>
+	   </dependency>
+	   <dependency>
+		   <groupId>org.junit.jupiter</groupId>
+		   <artifactId>junit-jupiter-api</artifactId>
+		   <version>RELEASE</version>
+		   <scope>test</scope>
+	   </dependency>
    </dependencies>
    <build>
 		<plugins>

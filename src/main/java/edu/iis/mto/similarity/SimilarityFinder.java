@@ -25,7 +25,7 @@ public class SimilarityFinder {
         int intersectSize = 0;
         for (int elem : seq1) {
             if (searcher.search(elem, seq2)
-                        .isFound()) {
+                    .isFound()) {
                 intersectSize++;
             }
         }
