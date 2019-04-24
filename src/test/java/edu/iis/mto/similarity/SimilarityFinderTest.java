@@ -28,6 +28,24 @@ public class SimilarityFinderTest {
         searchResult = new HashMap<>();
     }
 
+    @Test(expected = NullPointerException.class)
+    public void jackardSimiliarityBothOfSeqAreNull(){
+        int[] seq = null;
+        int[] seq1 = null;
+        similarityFinder.calculateJackardSimilarity(seq, seq1);
+    }
+
+    @Test
+    public void jackardSimiliarityCounterCalls(){
+        int[] seq = {1, 2, 3, 9, 10, 11};
+        int[] seq1 = {1, 2, 3, 7, 9};
+        searchResult = expectedResults(seq, seq1);
+        searcherDoubler = new SequenceSearcherDoubler(searchResult);
+        similarityFinder = new SimilarityFinder(searcherDoubler);
+        similarityFinder.calculateJackardSimilarity(seq, seq1);
+        Assert.assertEquals(4, searcherDoubler.getCountResults());
+    }
+
     @Test
     public void jackardSimiliarityBothOfSeqAreEmpty() {
         int[] seq = {};
@@ -50,8 +68,18 @@ public class SimilarityFinderTest {
 
     @Test
     public void jackardSimiliarityWithDiffrentSeqLenghts() {
-        int[] seq = {1, 2, 3, 6, 7, 8};
-        int[] seq1 = {1, 2, 3, 7, 4};
+        int[] seq = {1, 2, 3, 9, 10, 11};
+        int[] seq1 = {1, 2, 3, 7, 9};
+        searchResult = expectedResults(seq, seq1);
+        searcherDoubler = new SequenceSearcherDoubler(searchResult);
+        similarityFinder = new SimilarityFinder(searcherDoubler);
+        Assert.assertEquals(0.57, similarityFinder.calculateJackardSimilarity(seq, seq1), 0.01);
+    }
+
+    @Test
+    public void jackardSimiliaritySeqWithNegativeNumbers(){
+        int[] seq = {-1, -2, -3, -9, -10, -11};
+        int[] seq1 = {-1, -2, -3, -7, -9};
         searchResult = expectedResults(seq, seq1);
         searcherDoubler = new SequenceSearcherDoubler(searchResult);
         similarityFinder = new SimilarityFinder(searcherDoubler);
