@@ -29,6 +29,13 @@ public class SimilarityFinderTest {
     }
 
     @Test
+    public void jackardSimiliarityBothOfSeqAreEmpty(){
+        int[] seq = {};
+        int[] seq1 = {};
+        Assert.assertEquals(1, similarityFinder.calculateJackardSimilarity(seq, seq1), 0.01);
+    }
+
+    @Test
     public void jackardSimiliarityBothOfSeqAreSame() {
         int[] seq = {1, 2, 3, 4};
         int[] seq1 = {1, 2, 3, 4};
@@ -47,6 +54,8 @@ public class SimilarityFinderTest {
         similarityFinder = new SimilarityFinder(searcherDoubler);
         Assert.assertEquals(0.57, similarityFinder.calculateJackardSimilarity(seq, seq1), 0.01);
     }
+
+
 
     private HashMap<Integer, SearchResult> expectedResults(int[] seq, int[] seq1){
         HashMap<Integer, SearchResult> temp = new HashMap<>();
